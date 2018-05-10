@@ -1,13 +1,11 @@
-class Eatgrass {
-    constructor(x, y, ind) {
-        this.index = ind;
-        this.x = x;
-        this.y = y;
-        this.multiply = 0;
+class Eatgrass extends LivingCreature {
+    constructor(x, y, index) {
+        super(x, y, index);
+        this.tariq = 0;
+        this.energy = 8;
         this.die1 = 0;
         this.arjeq = 10;
     }
-
     newDirections() {
         this.directions = [
             [this.x - 1, this.y - 1],
@@ -20,23 +18,11 @@ class Eatgrass {
             [this.x + 1, this.y + 1]
         ];
     }
-
-
     getDirections(t) {
         this.newDirections();
-        var found = [];
-
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == t) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        return super.getDirections(t);
     }
+
 
 
 
@@ -115,9 +101,11 @@ class Eatgrass {
                         this.die();
                         this.arjeq = 10;
 
+                    }
+                }
             }
         }
-    }}}
+    }
 
     mul() {
         var emptyCord = this.getDirections(0);
