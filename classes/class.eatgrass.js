@@ -1,4 +1,4 @@
-var LivingCreature = require("./class.eatgrass.js");
+var LivingCreature = require("./class.LivingCreature.js");
 
 module.exports = class Eatgrass extends LivingCreature {
     constructor(x, y, index) {

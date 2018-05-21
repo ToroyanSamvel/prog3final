@@ -1,4 +1,4 @@
-var LivingCreature = require("./class.wolf.js");
+var LivingCreature = require("./class.LivingCreature.js");
 
  module.exports = class Wolf extends LivingCreature {
     constructor(x, y, index) {
