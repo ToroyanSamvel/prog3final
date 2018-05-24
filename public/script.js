@@ -1,3 +1,4 @@
+var socket = io.connect('http://localhost:3000');
 
 var side = 15;
 var x = 50;
@@ -12,7 +13,6 @@ function setup() {
 
 
 function gcel(matrix) {
-  background('#acacac');
 
   for (var i = 0; i < matrix.length; i++) {
     for (var j = 0; j < matrix[i].length; j++) {
@@ -44,3 +44,4 @@ function gcel(matrix) {
     }
   }
 }
+socket.on('matrix', gcel);

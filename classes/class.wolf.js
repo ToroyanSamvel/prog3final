@@ -51,7 +51,8 @@ var LivingCreature = require("./class.LivingCreature.js");
         var emptyCord = emptyCord1.concat(emptyCord0);
 
 
-        var cord = random(emptyCord);
+        var ind = Math.floor(Math.random() * emptyCord.length) // js
+        var cord = emptyCord[ind];
 
 
         if (cord) {
@@ -74,7 +75,8 @@ var LivingCreature = require("./class.LivingCreature.js");
     eat() {
         var emptyCord = this.getDirections(2);
 
-        var cord = random(emptyCord);
+        var ind = Math.floor(Math.random() * emptyCord.length) // js
+        var cord = emptyCord[ind];
 
 
         if (cord) {
@@ -155,7 +157,8 @@ var LivingCreature = require("./class.LivingCreature.js");
 
     mul() {
         var emptyCord = this.getDirections(0);
-        var cord = random(emptyCord);
+        var ind = Math.floor(Math.random() * emptyCord.length) // js
+        var cord = emptyCord[ind];
         if (cord) {
             var x = cord[0];
             var y = cord[1];

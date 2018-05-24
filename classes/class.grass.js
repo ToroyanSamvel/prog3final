@@ -6,9 +6,10 @@ module.exports = class Grass extends LivingCreature {
         this.multiply++;
         if (this.multiply == 6) {
             var emptyCord = this.getDirections(0);
-
-            var cord = random(emptyCord);
             if (cord) {
+
+                var ind = Math.floor(Math.random() * emptyCord.length) // js
+                var cord = emptyCord[ind];
                 var x = cord[0];
                 var y = cord[1];
 

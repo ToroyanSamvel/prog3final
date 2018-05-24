@@ -12,8 +12,6 @@ app.get("/", function (req, res) {
 server.listen(3000);
 
 
-
-
 var Grass = require("./classes/class.grass.js");
 var Eatgrass = require("./classes/class.eatgrass.js");
 var Wolf = require("./classes/class.wolf.js");
@@ -22,16 +20,15 @@ var Water = require("./classes/class.water.js");
 
 
 
-matrix = [];
-
 
 var x = 50;
 var y = 50;
- xotArr = [];
- eatArr = [];
- wolfArr = [];
- fireArr = [];
- waterArr = [];
+xotArr = [];
+eatArr = [];
+wolfArr = [];
+fireArr = [];
+waterArr = [];
+matrix = [];
 
 
 for (var i = 0; i < y; i++) {
@@ -131,35 +128,30 @@ for (var i = 0; i < matrix.length; i++) {
     }
 }
 
-
-
-setInterval(func, 2000);
-
-
-//draw
-
-
-function func() {
-    for (var i in xotArr) {
-        xotArr[i].mul();
-    }
+setInterval(function () {
     for (var i in eatArr) {
         eatArr[i].eat();
     }
     for (var i in wolfArr) {
         wolfArr[i].eat();
     }
-    /* for(var i in fireArr)
-      {
-      fireArr[i].move();
-      }
-      
-      for(var i in waterArr)
-      {
-      waterArr[i].();
-    }*/
-    
-}
-io.on('connection', function (gcel) {});
+    //for(var i in fireArr)
+    //           {
+    //           fireArr[i].move();
+    //           }
+
+    //           for(var i in waterArr)
+    //           {
+    //           waterArr[i].();
+    //         }
+}, 500);
+
+
+io.on('connection', function (socket) {
+    socket.emit('matrix', matrix);
+    console.log('Hello');
+});
+
+
 
 
