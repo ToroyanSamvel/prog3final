@@ -1,6 +1,6 @@
 var LivingCreature = require("./class.LivingCreature.js");
 
- module.exports = class Wolf extends LivingCreature {
+module.exports = class Wolf extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index);
         this.naxkinvandakNum = 0;
@@ -89,7 +89,11 @@ var LivingCreature = require("./class.LivingCreature.js");
 
             this.x = x;
             this.y = y;
-            
+            var obj = {
+                name: 'gishatich',
+                um_e_kerel: "xotaker"
+            }
+            arr_obj.push(obj);
             for (var i in eatArr) {
                 if (x == eatArr[i].x && y == eatArr[i].y) {
                     eatArr.splice(i, 1);
@@ -133,18 +137,18 @@ var LivingCreature = require("./class.LivingCreature.js");
 
                     }
                 }
-                else{
-                	var emptyCord = this.getDirections(5);
-                if (emptyCord.length > 0) {
-                    this.die2++;
+                else {
+                    var emptyCord = this.getDirections(5);
+                    if (emptyCord.length > 0) {
+                        this.die2++;
 
-                    if (this.die2 == 0) {
+                        if (this.die2 == 0) {
 
-                        this.die();
-                        this.die2 = 20;
+                            this.die();
+                            this.die2 = 20;
 
+                        }
                     }
-                }
                 }
             }
         }
@@ -156,39 +160,42 @@ var LivingCreature = require("./class.LivingCreature.js");
 
 
     mul() {
-        var emptyCord = this.getDirections(0);
-        var ind = Math.floor(Math.random() * emptyCord.length) // js
-        var cord = emptyCord[ind];
-        if (cord) {
-            var x = cord[0];
-            var y = cord[1];
-            var wolf1 = new Wolf(x, y, this.index);
-            wolfArr.push(wolf1);
+        if (exanak != "dzmer") {
+            var emptyCord = this.getDirections(0);
+            var ind = Math.floor(Math.random() * emptyCord.length) // js
+            var cord = emptyCord[ind];
+            if (cord) {
+                var x = cord[0];
+                var y = cord[1];
+                var wolf1 = new Wolf(x, y, this.index);
+                wolfArr.push(wolf1);
 
-            matrix[y][x] = 3;
-            this.multiply = 0;
+                matrix[y][x] = 3;
+                this.multiply = 0;
+            }
+            //else{
+            // for(var i = 0;i<matrix.length;i++)
+            // 			{
+            // 						for(var j = 0;j<matrix[i].length;j++)
+            // 						{
+
+            //   					   if(matrix[i][j] == 4 &&  0<this.arjeq)
+            //   					   {
+            //   					   		var emptyCord = this.getDirections(4);
+            //                               this.arjeq--;
+            //                               console.log(this.arjeq);    					   }
+            // 						}
+            // 						if(this.arjeq==0)
+            // 						{
+            // 							this.die();
+            // 						}
+
+            // 		}
+
+
+            //}
         }
-        //else{
-        // for(var i = 0;i<matrix.length;i++)
-        // 			{
-        // 						for(var j = 0;j<matrix[i].length;j++)
-        // 						{
 
-        //   					   if(matrix[i][j] == 4 &&  0<this.arjeq)
-        //   					   {
-        //   					   		var emptyCord = this.getDirections(4);
-        //                               this.arjeq--;
-        //                               console.log(this.arjeq);    					   }
-        // 						}
-        // 						if(this.arjeq==0)
-        // 						{
-        // 							this.die();
-        // 						}
-
-        // 		}
-
-
-        //}
 
     }
     die() {
@@ -196,6 +203,11 @@ var LivingCreature = require("./class.LivingCreature.js");
         matrix[this.y][this.x] = 0;
         for (var i in wolfArr) {
             if (this.x == wolfArr[i].x && this.y == wolfArr[i].y) {
+                var obj = {
+                    name: 'gishatich',
+                    mahanalu_patchary: "sov"
+                }
+                arr_obj.push(obj);
                 wolfArr.splice(i, 1);
             }
 

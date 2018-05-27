@@ -30,23 +30,26 @@ module.exports = class Eatgrass extends LivingCreature {
 
 
     move() {
-        var emptyCord = this.getDirections(0);
+        if (exanak != 'dzmer') {
+            var emptyCord = this.getDirections(0);
 
-        var ind = Math.floor(Math.random() * emptyCord.length) // js
-        var cord = emptyCord[ind];
+            var ind = Math.floor(Math.random() * emptyCord.length) // js
+            var cord = emptyCord[ind];
 
 
-        if (cord) {
-            var x = cord[0];
-            var y = cord[1];
+            if (cord) {
+                var x = cord[0];
+                var y = cord[1];
 
-            matrix[y][x] = 2;
+                matrix[y][x] = 2;
 
-            matrix[this.y][this.x] = 0;
+                matrix[this.y][this.x] = 0;
 
-            this.x = x;
-            this.y = y;
+                this.x = x;
+                this.y = y;
+            }
         }
+
     }
 
 
@@ -67,6 +70,13 @@ module.exports = class Eatgrass extends LivingCreature {
 
             this.x = x;
             this.y = y;
+
+            var obj = {
+                name: 'xotaker',
+                um_e_kerel: 'xotin'
+            }
+            arr_obj.push(obj);
+
             for (var i in xotArr) {
                 if (x == xotArr[i].x && y == xotArr[i].y) {
                     xotArr.splice(i, 1);
@@ -130,6 +140,11 @@ module.exports = class Eatgrass extends LivingCreature {
         matrix[this.y][this.x] = 0;
         for (var i in eatArr) {
             if (this.x == eatArr[i].x && this.y == eatArr[i].y) {
+                var obj = {
+                    name: 'xotaker',
+                    vochnchanalu_patchary: 'wolf'
+                }
+                arr_obj.push(obj);
                 eatArr.splice(i, 1);
             }
         }

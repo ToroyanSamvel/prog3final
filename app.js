@@ -1,16 +1,24 @@
+var json_push_mlp = 0;
+global.arr_obj = [];
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var fs = require('fs');
 
+///////////
+
+app.set('port', process.env.PORT || 3000);
 app.use(express.static("public"));
-
 app.get("/", function (req, res) {
     res.redirect("public/index.html");
 });
 
-server.listen(3000);
+//////////
 
+server.listen(app.get('port'));
+
+////varclasses////
 
 var Grass = require("./classes/class.grass.js");
 var Eatgrass = require("./classes/class.eatgrass.js");
@@ -19,7 +27,7 @@ var Fire = require("./classes/class.fire.js");
 var Water = require("./classes/class.water.js");
 
 
-
+///var///
 
 var x = 50;
 var y = 50;
@@ -29,6 +37,10 @@ wolfArr = [];
 fireArr = [];
 waterArr = [];
 matrix = [];
+exanak = 'garun';
+num = 0;
+
+///
 
 
 for (var i = 0; i < y; i++) {
@@ -37,6 +49,8 @@ for (var i = 0; i < y; i++) {
         matrix[i][j] = 0;
     }
 }
+
+///
 
 var xotCount = x * y * 40 / 100;
 
@@ -51,6 +65,8 @@ for (var q = 0; q < xotCount; q++) {
     }
 }
 
+///
+
 var eatCount = x * y * 0.5 / 100;
 
 for (var q = 0; q < eatCount; q++) {
@@ -63,6 +79,8 @@ for (var q = 0; q < eatCount; q++) {
         q--;
     }
 }
+
+///
 
 var wolfCount = x * y * 0.5 / 100;
 
@@ -77,6 +95,8 @@ for (var q = 0; q < wolfCount; q++) {
     }
 }
 
+///
+
 var fireCount = x * y * 0.5 / 100;
 
 for (var q = 0; q < fireCount; q++) {
@@ -90,6 +110,8 @@ for (var q = 0; q < fireCount; q++) {
     }
 }
 
+///
+
 var waterCount = x * y * 0.5 / 100;
 
 for (var q = 0; q < waterCount; q++) {
@@ -102,6 +124,8 @@ for (var q = 0; q < waterCount; q++) {
         q--;
     }
 }
+
+///////////////////////////////////////////////////
 
 for (var i = 0; i < matrix.length; i++) {
     for (var j = 0; j < matrix[i].length; j++) {
@@ -128,29 +152,54 @@ for (var i = 0; i < matrix.length; i++) {
     }
 }
 
+//Interval
+
 setInterval(function () {
-    for (var i in eatArr) {
-        eatArr[i].eat();
-    }
-    for (var i in wolfArr) {
-        wolfArr[i].eat();
-    }
-    //for(var i in fireArr)
-    //           {
-    //           fireArr[i].move();
-    //           }
+        for (var i in xotArr) {
+            xotArr[i].mul();
+        }
+        for (var i in eatArr) {
+            eatArr[i].eat();
+        }
+        for (var i in wolfArr) {
+            wolfArr[i].eat();
+        }
+        
+        
+//exanak
+        num++;
+        if (num % 80 == 0) {
+            exanak = 'garun';
+        }
+        else if (num % 80 == 20) {
+            exanak = 'amar';
+        }
+        else if (num % 80 == 40) {
+            exanak = 'ashun';
+        }
+        else if (num % 80 == 60) {
+            exanak = 'dzmer';
+        }
 
-    //           for(var i in waterArr)
-    //           {
-    //           waterArr[i].();
-    //         }
-}, 500);
+//static
+        json_push_mlp++;
+        if(json_push_mlp >= 10){
+            var file = 'static.json';
+            for(var i in arr_obj){
+                fs.appendFileSync(file,JSON.stringify(arr_obj[i]) + '\n');
+            }
+            arr_obj = [];
+        }
+//io.sockets
+
+        io.sockets.emit('matrix', matrix);
+        io.sockets.emit('exanak', exanak);
+
+    }, 1000);
 
 
-io.on('connection', function (socket) {
-    socket.emit('matrix', matrix);
-    console.log('Hello');
-});
+io.on('connection', function (socket) {});
+
 
 
 
